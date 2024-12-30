@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if customer %}Edit Customer{% else %}Add Customer{% endif %}</title>
+</head>
+<body>
+    <h1>{% if customer %}Edit Customer{% else %}Add Customer{% endif %}</h1>
+    <form method="POST" action="{% if customer %}{{ url_for('edit', id=customer[0]) }}{% else %}{{ url_for('add') }}{% endif %}">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="{% if customer %}{{ customer[1] }}{% endif %}" required><br>
+
+        <label for="middle_name">Middle Name:</label>
+        <input type="text" id="middle_name" name="middle_name" value="{% if customer %}{{ customer[2] }}{% endif %}"><br>
+
+        <label for="last_name">last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="{% if customer %}{{ customer[3] }}{% endif %}" required><br>
+
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender" required>
+            <option value="male" {% if customer and customer[4] == 'male' %}selected{% endif %}>Male</option>
+            <option value="female" {% if customer and customer[4] == 'female' %}selected{% endif %}>Female</option>
+        </select><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{% if customer %}{{ customer[5] }}{% endif %}" required><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" value="{% if customer %}{{ customer[6] }}{% endif %}" required><br>
+
+        <label for="town_city">Town City:</label>
+        <input type="town_city" id="town_city" name="town_city" value="{% if customer %}{{ customer[7] }}{% endif %}" required><br>
+
+        <label for="country">Country:</label>
+        <input type="country" id="country" name="country" value="{% if customer %}{{ customer[8] }}{% endif %}" required><br>
+
+        <button type="submit">{% if customer %}Update{% else %}Add{% endif %}</button>
+    </form>
+</body>
+</html>
